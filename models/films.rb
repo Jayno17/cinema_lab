@@ -25,6 +25,13 @@ attr_accessor :title, :price
     SqlRunner.run(sql, values)
   end
 
+  def update()
+    sql = "UPDATE films
+    SET (title, price) = ($1, $2)
+    WHERE id = $3"
+    values =[@title, @price, @id]
+    SqlRunner.run(sql, values)
+  end
 
   def self.delete_all()
     sql = "DELETE FROM films"
