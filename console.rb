@@ -4,6 +4,11 @@ require_relative("models/tickets")
 
 require("pry-byebug")
 
+Ticket.delete_all()
+Film.delete_all()
+Customer.delete_all()
+
+
 customer1 = Customer.new({
   "name" => "Alex Burgess",
   "funds" => "30"
@@ -35,32 +40,32 @@ film2 = Film.new({
   film2.save()
 
 ticket1 = Ticket.new({
-  "customer_id" => "1",
-  "film_id" => "1"
+  "customer_id" => customer1.id,
+  "film_id" => film1.id
   })
 ticket1.save()
 
 ticket2 = Ticket.new({
-  "customer_id" => "2",
-  "film_id" => "1"
+  "customer_id" => customer2.id,
+  "film_id" => film1.id
   })
 ticket2.save()
 
 ticket3 = Ticket.new({
-  "customer_id" => "3",
-  "film_id" => "1"
+  "customer_id" => customer3.id,
+  "film_id" => film1.id
   })
 ticket3.save()
 
 ticket4 = Ticket.new({
-  "customer_id" => "2",
-  "film_id" => "2"
+  "customer_id" => customer2.id,
+  "film_id" => film2.id
   })
 ticket4.save()
 
 ticket5 = Ticket.new({
-  "customer_id" => "3",
-  "film_id" => "2"
+  "customer_id" => customer3.id,
+  "film_id" => film2.id
   })
 ticket5.save()
 
