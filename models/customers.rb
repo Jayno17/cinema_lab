@@ -18,6 +18,16 @@ attr_accessor :name, :funds
     @id = customer["id"].to_i()
   end
 
+  def films()
+    sql = "SELECT films.* FROM films
+    INNER JOIN tickets ON tickets.film_id = film_id
+    WHERE customer_id = $1"
+    values = [@id]
+    films = SqlRunner.run(sql, values)
+    return films.map { |film| Film.new(film)}
+  end
+
+
   def delete()
     sql = "DELETE FROM customers WHERE id = $1"
     values = [@id]
@@ -31,6 +41,7 @@ attr_accessor :name, :funds
     values =[@name, @funds, @id]
     SqlRunner.run(sql, values)
   end
+
 
   def self.delete_all()
     sql = "DELETE FROM customers"
